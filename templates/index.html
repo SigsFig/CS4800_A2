@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Campus Study Spots</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>📚 Campus Study Spots</h1>
+        <p class="subtitle">Find and share good places to study on campus</p>
+
+        <div class="actions">
+            <a class="btn" href="/add">➕ Add New Spot</a>
+
+            <form method="POST" action="/clear" onsubmit="return confirm('Remove ALL study spots?');">
+                <button class="btn danger">🗑 Clear All</button>
+            </form>
+        </div>
+
+        <ul class="spot-list">
+            {% for spot in spots %}
+            <li class="spot-card">
+                <h3>{{ spot.name }}</h3>
+                <p><strong>Location:</strong> {{ spot.location }}</p>
+                <p><strong>Noise:</strong> {{ spot.noise }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% if spots|length == 0 %}
+            <p class="empty">No study spots yet.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
